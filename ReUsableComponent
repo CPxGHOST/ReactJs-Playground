@@ -1,0 +1,35 @@
+function Button(props){
+    
+    const handleClick = () => {props.incrementCounter(props.incrementValue)};
+  
+    return <button onClick ={handleClick}>
+      +{props.incrementValue}
+    </button>
+}
+function Display(props){
+    return <div>{props.message}</div>
+}
+function App(){
+  
+ const [counter,setCounter] = useState(0);
+ 
+ function IncrementCounter(value){
+     setCounter(counter+value);
+ }
+  
+  
+  return (
+      <div>
+        <Button incrementCounter = {IncrementCounter} incrementValue = {1} />
+        <Button incrementCounter = {IncrementCounter} incrementValue = {5}/>
+        <Button incrementCounter = {IncrementCounter} incrementValue = {10}/>
+        <Button incrementCounter = {IncrementCounter} incrementValue = {100}/>
+        <Display message = {counter}/>
+      </div>
+  );
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('mountNode'),
+);
