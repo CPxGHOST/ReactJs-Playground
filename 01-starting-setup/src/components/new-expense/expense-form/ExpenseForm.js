@@ -5,6 +5,7 @@ const ExpenseForm = (props) => {
   //   const [title, setTitle] = useState("");
   //   const [date, setDate] = useState("");
   //   const [amount, setAmount] = useState("");
+  console.log("========Rendered ExpenseForm.js========");
 
   const [expenseFormInput, setExpenseFormInput] = useState({
     title: "",
@@ -17,20 +18,17 @@ const ExpenseForm = (props) => {
     setExpenseFormInput((oldState) => {
       return { ...oldState, title: event.target.value };
     });
-    console.log(expenseFormInput.title);
   };
   const amountChangeHandler = (event) => {
     // setAmount(event.target.value);
     setExpenseFormInput((oldState) => {
       return { ...oldState, amount: event.target.value };
     });
-    console.log(expenseFormInput.amount);
   };
   const dateChangeHandler = (event) => {
     setExpenseFormInput((oldState) => {
       return { ...oldState, date: event.target.value };
     });
-    console.log(expenseFormInput.date);
   };
   const submitHandler = (event) => {
     event.preventDefault();
