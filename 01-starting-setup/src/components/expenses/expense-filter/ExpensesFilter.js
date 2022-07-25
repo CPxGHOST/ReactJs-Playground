@@ -3,6 +3,7 @@ import React from "react";
 import "./ExpensesFilter.css";
 
 const ExpensesFilter = (props) => {
+  console.log("========Rendered ExpensesFilter.js========");
   const dropDownChangeHandler = (event) => {
     props.selectYearFromFilterDropDown(event.target.value);
   };
