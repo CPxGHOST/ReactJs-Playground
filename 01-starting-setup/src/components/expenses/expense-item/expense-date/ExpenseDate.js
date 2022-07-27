@@ -1,6 +1,6 @@
 import './ExpenseDate.css';
 const ExpenseDate = (props) => {
-  console.log("========Rendered ExpenseDate.js========");
+  console.log("=====Rendered ExpenseDate.js");
   const date = {
     month: props.date.toLocaleString("en-US", { month: "long" }),
     year: props.date.getFullYear(),
