@@ -5,7 +5,7 @@ const ExpenseForm = (props) => {
   //   const [title, setTitle] = useState("");
   //   const [date, setDate] = useState("");
   //   const [amount, setAmount] = useState("");
-  console.log("========Rendered ExpenseForm.js========");
+  console.log("===Rendered ExpenseForm.js");
 
   const [expenseFormInput, setExpenseFormInput] = useState({
     title: "",
@@ -42,7 +42,11 @@ const ExpenseForm = (props) => {
       amount: "",
       date: "",
     });
+    cancelButtonClickHandler();
   };
+  const cancelButtonClickHandler = () =>{
+    props.cancelButtonClicked();
+  }
 
   return (
     <form onSubmit={submitHandler}>
@@ -74,8 +78,9 @@ const ExpenseForm = (props) => {
           />
         </div>
       </div>
-      <div>
-        <button type="submit" className="new-expense__actions">Add Expense</button>
+      <div className="new-expense__actions">
+        <button type="submit">Add Expense</button>
+        <button onClick={cancelButtonClickHandler}>Cancel</button>
       </div>
     </form>
   );

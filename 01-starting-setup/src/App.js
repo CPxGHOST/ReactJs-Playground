@@ -2,7 +2,7 @@ import { useState } from "react";
 import Expenses from "./components/expenses/Expenses";
 import NewExpense from "./components/new-expense/NewExpense";
 const App = () => {
-  console.log("========Rendered app.js========");
+  console.log("=Rendered app.js");
   const initExpenses = [
     {
       id: "e1",
