@@ -1,3 +1,3 @@
-# Expenses-Tracker
-Expenses tracker is a simple react application which can be used to track your basic expenses. I created this app while watching Maximilian Schwarzmüller's udemy course 
-on React JS.
+# ReactJs-Playground
+This repo contains practice projects which helps in clearing the fundamentals of the react library.
+
