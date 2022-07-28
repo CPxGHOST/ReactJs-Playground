@@ -1,7 +1,7 @@
 import "./ExpenseItem.css";
 import "./expense-date/ExpenseDate";
 import ExpenseDate from "./expense-date/ExpenseDate";
-import Card from "../../shared/card/Card";
+import Card from "../../../shared/card/Card";
 const ExpenseItem = (props) => {
   console.log("====Rendered ExpenseItem.js");
   return (
