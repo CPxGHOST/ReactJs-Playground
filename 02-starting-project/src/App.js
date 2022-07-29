@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import CourseGoalList from './components/CourseGoals/CourseGoalList/CourseGoalList';
-import CourseInput from './components/CourseGoals/CourseInput/CourseInput';
+import CourseGoalList from './components/CourseGoalList/CourseGoalList';
+import CourseInput from './components/CourseInput/CourseInput';
 import './App.css';
 
 const App = () => {
@@ -12,8 +12,8 @@ const App = () => {
 
   const addGoalHandler = enteredText => {
     setCourseGoals(prevGoals => {
-      const updatedGoals = [...prevGoals];
-      updatedGoals.unshift({ text: enteredText, id: Math.random().toString() });
+      const updatedGoals = [...prevGoals, {text: enteredText, id: Math.random().toString()}];
+      // updatedGoals.unshift({ text: enteredText, id: Math.random().toString() });
       return updatedGoals;
     });
   };
