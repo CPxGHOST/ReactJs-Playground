@@ -1,25 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+// import styled from "styled-components";
+import Button from "../UI/Button/Button";
+import styles from './CourseInput.module.css'
 
-import Button from '../UI/Button/Button';
-import './CourseInput.css';
+// const FormControl = styled.div`
+//   margin: 0.5rem 0;
 
-const CourseInput = props => {
-  const [enteredValue, setEnteredValue] = useState('');
+//   & label{
+//     color: ${props => props.isValid ? 'black' : 'red'};
+//     font-weight: bold;
+//     display: block;
+//     margin-bottom: 0.5rem;
+//   }
 
-  const goalInputChangeHandler = event => {
+//   & input {
+//     display: block;
+//     width: 100%;
+//     border: 1px solid ${props => props.isValid? '#ccc' : 'red'};
+//     background-color: ${props => props.isValid? 'transparent': 'salmon'};
+//     font: inherit;
+//     line-height: 1.5rem;
+//     padding: 0 0.25rem;
+//   }
+
+//   & input:focus {
+//     outline: none;
+//     background: #fad0ec;
+//     border-color: #8b005d;
+//   }
+//   &.invalid label {
+//     color: red;
+//   }
+//   &.invalid input {
+//     border-color: red;
+//     background-color: salmon;
+//   }
+// `;
+
+const CourseInput = (props) => {
+  const [enteredValue, setEnteredValue] = useState("");
+  const [isValid, setIsValid] = useState(true);
+
+  const goalInputChangeHandler = (event) => {
+    if (event.target.value.trim().length > 0) {
+      setIsValid(true);
+    }
     setEnteredValue(event.target.value);
   };
 
-  const formSubmitHandler = event => {
+  const formSubmitHandler = (event) => {
     event.preventDefault();
+    if (enteredValue.trim().length === 0) {
+      setIsValid(false);
+      return;
+    }
+    setIsValid(true);
+    setEnteredValue("");
     props.onAddGoal(enteredValue);
   };
 
-  return (
+  return (  
     <form onSubmit={formSubmitHandler}>
-      <div className="form-control">
+      <div className={`${styles['form-control']} ${isValid? '' : styles['invalid']}`}>
         <label>Course Goal</label>
-        <input type="text" onChange={goalInputChangeHandler} />
+        <input
+          type="text"
+          onChange={goalInputChangeHandler}
+          value={enteredValue}
+        />
       </div>
       <Button type="submit">Add Goal</Button>
     </form>
