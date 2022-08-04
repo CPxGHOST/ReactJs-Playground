@@ -1,0 +1,8 @@
+.user{
+    border: 1px solid black;
+    width: 75%;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;    
+}

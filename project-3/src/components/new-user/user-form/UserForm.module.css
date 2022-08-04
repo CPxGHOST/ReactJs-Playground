@@ -1,0 +1,9 @@
+.form-control{
+    margin-top: 1rem;
+}
+.form-control input{
+    width: 100%;
+}
+.form-control label{
+    font-weight: bold;
+}

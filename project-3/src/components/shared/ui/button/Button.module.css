@@ -1,0 +1,11 @@
+.button{
+    background-color: rgb(73, 1, 102);
+    color: #fff;
+    font-weight: bold;
+    text-transform: capitalize;
+    width: 12rem;
+    height: 3rem;
+}
+.button:hover{
+    cursor: pointer;
+}
