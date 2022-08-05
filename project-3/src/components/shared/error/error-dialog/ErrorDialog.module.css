@@ -1,0 +1,24 @@
+.error-dialog {
+  margin-top: 15rem;
+  padding-top: 0%;
+  padding-left: 0;
+  padding-right: 0;
+  border-top-left-radius: 2rem;
+  pointer-events: none;
+}
+.error-heading {
+  background-color: rgb(73, 1, 102);
+  color: #fff;
+  border-top-left-radius: 0.8rem;
+  border-top-right-radius: 0.8rem;
+  padding-left: 0.5rem;
+}
+.error-message{
+    padding-left: 0.5rem;
+    font-weight: bold;
+    font-size: large;
+}
+.error-button{
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+}

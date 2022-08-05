@@ -9,13 +9,10 @@ const UserForm = (props) => {
     name: "",
     age: "",
   };
-  const initIsDataValid = {
-    flag: true,
-    errorMessage: "",
-  };
+
   const [userData, setUserData] = useState(initUserData);
-  const [isDataValid, setIsDataValid] = useState(initIsDataValid);
-  let errorMessage = "";
+  const [isDataValid, setIsDataValid] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const userNameChangeHandler = (event) => {
     setUserData((oldState) => {
@@ -35,38 +32,42 @@ const UserForm = (props) => {
     };
 
     event.preventDefault();
-    console.log(`on submit!! => ${payLoad.name} ${payLoad.age} ${payLoad.id}`);
     validateFields(payLoad.name, payLoad.age);
+    if (!isDataValid) {
+      return;
+    }
     setUserData(initUserData);
     props.addNewUser(payLoad);
-    
   };
   const onCancelClickHandler = () => {
     setIsDataValid(true);
   };
   const validateFields = (name, age) => {
     let format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-    let dataValidityObject = initIsDataValid;
     if (name.length === 0 && age <= 0) {
-      dataValidityObject.errorMessage = constants.errorMessages.nameAndAge;
-      dataValidityObject.flag = false;
-      setIsDataValid(dataValidityObject);
+      setIsDataValid((oldState) => {
+        setErrorMessage(constants.errorMessages.nameAndAge);
+        return false;
+      });
     }
     //for length = 0
     else if (name.trim().length === 0) {
-      dataValidityObject.errorMessage = constants.errorMessages.nameEmpty;
-      dataValidityObject.flag = false;
-      setIsDataValid(dataValidityObject);
+      setIsDataValid((oldState) => {
+        setErrorMessage(constants.errorMessages.nameEmpty);
+        return false;
+      });
     }
     //for special characters
     else if (format.test(name)) {
-      dataValidityObject.errorMessage = constants.errorMessages.nameInvalid;
-      dataValidityObject.flag = false;
-      setIsDataValid(dataValidityObject);
+      setIsDataValid((oldState) => {
+        setErrorMessage(constants.errorMessages.nameInvalid);
+        return false;
+      });
     } else if (age <= 0) {
-      dataValidityObject.errorMessage = constants.errorMessages.ageEmpty;
-      dataValidityObject.flag = false;
-      setIsDataValid(dataValidityObject);
+      setIsDataValid((oldState) => {
+        setErrorMessage(constants.errorMessages.ageEmpty);
+        return false;
+      });
     }
   };
   let displayContent = (
@@ -97,7 +98,7 @@ const UserForm = (props) => {
       <div>
         <Error
           errorMessage={errorMessage}
-          onClickHandler={onCancelClickHandler}
+          onCancelClickHandler={onCancelClickHandler}
         />
         <form onSubmit={onSubmitHandler}>
           <div className={styles["form-control"]}>
@@ -117,10 +118,7 @@ const UserForm = (props) => {
             />
           </div>
           <div className={styles["form-control"]}>
-            <Button
-              buttonTitle={constants.buttonTitles.userFormButtonTitle}
-              buttonType="submit"
-            />
+            <Button buttonTitle="Add User" buttonType="submit" />
           </div>
         </form>
       </div>
