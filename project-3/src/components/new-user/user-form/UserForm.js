@@ -33,11 +33,6 @@ const UserForm = (props) => {
 
     event.preventDefault();
     validateFields(payLoad.name, payLoad.age);
-    if (!isDataValid) {
-      return;
-    }
-    setUserData(initUserData);
-    props.addNewUser(payLoad);
   };
   const onCancelClickHandler = () => {
     setIsDataValid(true);
@@ -67,6 +62,17 @@ const UserForm = (props) => {
       setIsDataValid((oldState) => {
         setErrorMessage(constants.errorMessages.ageEmpty);
         return false;
+      });
+    } else {
+      setIsDataValid((oldState) => {
+        const payLoad = {
+          id: -1,
+          name: userData.name,
+          age: userData.age.length === 0 ? 0 : parseInt(userData.age),
+        };
+        //setUserData(initUserData);
+        props.addNewUser(payLoad);
+        return true;
       });
     }
   };
