@@ -1,8 +1,7 @@
 import { useState } from "react";
-import styles from "./App.module.css";
+//import styles from "./App.module.css";
 import NewUser from "./components/new-user/NewUser";
 import Users from "./components/users/Users";
-import Error from "./components/shared/error/Error";
 
 function App() {
   console.log("Rendered App.js");
@@ -13,14 +12,13 @@ function App() {
   ];
   const [users, setUsers] = useState(initUsers);
   const onAddNewUser = (newUser) => {
-    setUsers(oldState => {
-      return [...oldState, {...newUser, id: users.length+1}];
-    })
+    setUsers((oldState) => {
+      return [...oldState, { ...newUser, id: users.length + 1 }];
+    });
   };
   return (
     <div>
-      
-      <NewUser onAddNewUser={onAddNewUser}/>
+      <NewUser onAddNewUser={onAddNewUser} />
       <Users users={users} />
     </div>
   );
