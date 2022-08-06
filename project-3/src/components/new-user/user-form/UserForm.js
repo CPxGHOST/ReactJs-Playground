@@ -25,14 +25,10 @@ const UserForm = (props) => {
     });
   };
   const onSubmitHandler = (event) => {
-    const payLoad = {
-      id: -1,
-      name: userData.name,
-      age: userData.age.length === 0 ? 0 : parseInt(userData.age),
-    };
-
+    const name = userData.name;
+    const age = userData.age.length === 0 ? 0 : parseInt(userData.age);
     event.preventDefault();
-    validateFields(payLoad.name, payLoad.age);
+    validateFields(name, age);
   };
   const onCancelClickHandler = () => {
     setIsDataValid(true);
@@ -40,40 +36,30 @@ const UserForm = (props) => {
   const validateFields = (name, age) => {
     let format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     if (name.length === 0 && age <= 0) {
-      setIsDataValid((oldState) => {
-        setErrorMessage(constants.errorMessages.nameAndAge);
-        return false;
-      });
+      setIsDataValid(false);
+      setErrorMessage(constants.errorMessages.nameAndAge);
     }
     //for length = 0
     else if (name.trim().length === 0) {
-      setIsDataValid((oldState) => {
-        setErrorMessage(constants.errorMessages.nameEmpty);
-        return false;
-      });
+      setIsDataValid(false);
+      setErrorMessage(constants.errorMessages.nameEmpty);
     }
     //for special characters
     else if (format.test(name)) {
-      setIsDataValid((oldState) => {
-        setErrorMessage(constants.errorMessages.nameInvalid);
-        return false;
-      });
+      setIsDataValid(false);
+      setErrorMessage(constants.errorMessages.nameInvalid);
     } else if (age <= 0) {
-      setIsDataValid((oldState) => {
-        setErrorMessage(constants.errorMessages.ageEmpty);
-        return false;
-      });
+      setErrorMessage(constants.errorMessages.ageInvalid);
+      setIsDataValid(false);
     } else {
-      setIsDataValid((oldState) => {
-        const payLoad = {
-          id: -1,
-          name: userData.name,
-          age: userData.age.length === 0 ? 0 : parseInt(userData.age),
-        };
-        //setUserData(initUserData);
-        props.addNewUser(payLoad);
-        return true;
-      });
+      const payLoad = {
+        id: -1,
+        name: userData.name,
+        age: userData.age.length === 0 ? 0 : parseInt(userData.age),
+      };
+      props.addNewUser(payLoad);
+      setUserData(initUserData);
+      setIsDataValid(true);
     }
   };
   let displayContent = (
