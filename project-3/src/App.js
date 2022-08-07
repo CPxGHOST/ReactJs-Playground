@@ -3,6 +3,7 @@ import { useState } from "react";
 import NewUser from "./components/new-user/NewUser";
 import Users from "./components/users/Users";
 
+
 function App() {
   console.log("Rendered App.js");
   const initUsers = [
@@ -17,10 +18,10 @@ function App() {
     });
   };
   return (
-    <div>
+    <>
       <NewUser onAddNewUser={onAddNewUser} />
       <Users users={users} />
-    </div>
+    </>
   );
 }
 

@@ -1,32 +1,26 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Button from "../../shared/ui/button/Button";
 import Error from "../../shared/error/Error";
 import styles from "./UserForm.module.css";
 import constants from "../../shared/constants";
+
 const UserForm = (props) => {
   console.log(`==Rendered UserForm.js`);
   const initUserData = {
     name: "",
     age: "",
   };
-
-  const [userData, setUserData] = useState(initUserData);
+  const userNameRef = useRef();
+  const userAgeRef = useRef();
   const [isDataValid, setIsDataValid] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const userNameChangeHandler = (event) => {
-    setUserData((oldState) => {
-      return { ...oldState, name: event.target.value };
-    });
-  };
-  const userAgeChangeHandler = (event) => {
-    setUserData((oldState) => {
-      return { ...oldState, age: event.target.value };
-    });
-  };
   const onSubmitHandler = (event) => {
-    const name = userData.name;
-    const age = userData.age.length === 0 ? 0 : parseInt(userData.age);
+    const name = userNameRef.current.value;
+    const age =
+      userAgeRef.current.value.length === 0
+        ? 0
+        : parseInt(userAgeRef.current.value);
     event.preventDefault();
     validateFields(name, age);
   };
@@ -54,31 +48,24 @@ const UserForm = (props) => {
     } else {
       const payLoad = {
         id: -1,
-        name: userData.name,
-        age: userData.age.length === 0 ? 0 : parseInt(userData.age),
+        name: name,
+        age: age,
       };
       props.addNewUser(payLoad);
-      setUserData(initUserData);
       setIsDataValid(true);
+      userNameRef.current.value = '';
+      userAgeRef.current.value = '';
     }
   };
   let displayContent = (
     <form onSubmit={onSubmitHandler}>
       <div className={styles["form-control"]}>
         <label>Username</label>
-        <input
-          type="text"
-          onChange={userNameChangeHandler}
-          value={userData.name}
-        />
+        <input type="text" ref={userNameRef} />
       </div>
       <div className={styles["form-control"]}>
         <label>Age (Years)</label>
-        <input
-          type="number"
-          onChange={userAgeChangeHandler}
-          value={userData.age}
-        />
+        <input type="number" ref={userAgeRef} />
       </div>
       <div className={styles["form-control"]}>
         <Button buttonTitle="Add User" buttonType="submit" />
@@ -87,7 +74,7 @@ const UserForm = (props) => {
   );
   if (!isDataValid) {
     displayContent = (
-      <div>
+      <>
         <Error
           errorMessage={errorMessage}
           onCancelClickHandler={onCancelClickHandler}
@@ -95,25 +82,17 @@ const UserForm = (props) => {
         <form onSubmit={onSubmitHandler}>
           <div className={styles["form-control"]}>
             <label>Username</label>
-            <input
-              type="text"
-              onChange={userNameChangeHandler}
-              value={userData.name}
-            />
+            <input type="text" />
           </div>
           <div className={styles["form-control"]}>
             <label>Age (Years)</label>
-            <input
-              type="number"
-              onChange={userAgeChangeHandler}
-              value={userData.age}
-            />
+            <input type="number" />
           </div>
           <div className={styles["form-control"]}>
             <Button buttonTitle="Add User" buttonType="submit" />
           </div>
         </form>
-      </div>
+      </>
     );
   }
   return displayContent;
