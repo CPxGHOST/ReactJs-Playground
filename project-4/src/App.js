@@ -19,7 +19,7 @@ function App() {
     setIsLoggedIn(false);
   };
   useEffect(() => {
-    console.log(`Inside use effect!`);
+    console.log(`App.js use effect`);
     if (localStorage.getItem("isLoggedIn") === "1") {
       setIsLoggedIn(true);
     }
