@@ -6,36 +6,36 @@ const Menu = (props) => {
     {
       title: "Burgers",
       desc: "Hamburger with tasty fillings",
-      prize: 400,
+      price: 400,
       id: 1,
     },
     {
       title: "Pizza",
       desc: "Italian Delight",
-      prize: 800.23,
+      price: 800.23,
       id: 2,
     },
     {
       title: "Momos",
       desc: "With delicious laal chutney",
-      prize: 350.33,
+      price: 350.33,
       id: 3,
     },
     {
       title: "Pasta",
       desc: "Alfredo Penne and Spaghetti",
-      prize: 550.52,
+      price: 550.52,
       id: 4,
     },
     {
       title: "Chilli Potato",
       desc: "The classic",
-      prize: 500.5,
+      price: 500.5,
       id: 5,
     },
   ];
-  return <Card>
-    {menu.map(menuItem => <MenuItem menuItem={menuItem}/>)}
+  return <Card className={styles.menuCard}>
+    {menu.map(menuItem => <MenuItem menuItem={menuItem} key={menuItem.id}/>)}
   </Card>;
 };
 export default Menu;

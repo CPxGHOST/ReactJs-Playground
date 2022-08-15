@@ -1,0 +1,9 @@
+.cart{
+    width: 10rem;
+    height: 2rem;
+    background-color: rgb(71, 15, 15);
+}
+.cart:hover{
+    cursor: pointer;
+    background-color: rgb(104, 20, 20);;
+}
