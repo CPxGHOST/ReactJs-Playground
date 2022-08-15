@@ -1,4 +1,5 @@
 import Card from "../shared/card/Card";
+import MenuItem from "./menu-item/MenuItem";
 import styles from "./Menu.module.css";
 const Menu = (props) => {
   const menu = [
@@ -33,6 +34,8 @@ const Menu = (props) => {
       id: 5,
     },
   ];
-  return <Card></Card>;
+  return <Card>
+    {menu.map(menuItem => <MenuItem menuItem={menuItem}/>)}
+  </Card>;
 };
 export default Menu;
