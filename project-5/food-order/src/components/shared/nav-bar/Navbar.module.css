@@ -1,0 +1,20 @@
+.navbar {
+  background-color: rgb(139, 27, 27);
+  margin: 0;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  position: sticky;
+}
+.navbar-left {
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+.navbar-left h1 {
+  margin: 0;
+  margin-top: 0.5rem;
+}
+.navbar-right {
+}
