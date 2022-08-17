@@ -7,35 +7,39 @@ const Menu = (props) => {
       title: "Burgers",
       desc: "Hamburger with tasty fillings",
       price: 400,
-      id: 1,
+      id: 0,
     },
     {
       title: "Pizza",
       desc: "Italian Delight",
       price: 800.23,
-      id: 2,
+      id: 1,
     },
     {
       title: "Momos",
       desc: "With delicious laal chutney",
       price: 350.33,
-      id: 3,
+      id: 2,
     },
     {
       title: "Pasta",
       desc: "Alfredo Penne and Spaghetti",
       price: 550.52,
-      id: 4,
+      id: 3,
     },
     {
       title: "Chilli Potato",
       desc: "The classic",
       price: 500.5,
-      id: 5,
+      id: 4,
     },
   ];
-  return <Card className={styles.menuCard}>
-    {menu.map(menuItem => <MenuItem menuItem={menuItem} key={menuItem.id}/>)}
-  </Card>;
+  return (
+    <Card className={styles.menuCard}>
+      {menu.map((menuItem) => (
+        <MenuItem menuItem={menuItem} key={menuItem.id} />
+      ))}
+    </Card>
+  );
 };
 export default Menu;

@@ -1,7 +1,10 @@
-.menuItem{
-    border: 1px solid black;
-    margin-bottom: 1.5rem;
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
+.menuItem {
+  border: 1px solid black;
+  margin-bottom: 1.5rem;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.buttonContainer {
+  margin-top: 3rem;
 }

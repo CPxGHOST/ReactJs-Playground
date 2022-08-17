@@ -7,18 +7,16 @@ const MenuItem = (props) => {
   const [numberOfItem, setNumberOfItem] = useState(0);
   const itemCtx = useContext(ItemContext);
   const addItemToCart = () => {
-    console.log(`Item Added!`);
+    const addedItem = {
+      price: props.menuItem.price,
+      id: props.menuItem.id,
+    };
+
     setNumberOfItem((prevState) => {
       return prevState + 1;
     });
-    itemCtx.addItemToCart();
-  };
-  const removeItemFromCard = () => {
-    setNumberOfItem((prevState) => {
-      return prevState - 1;
-    });
-    itemCtx.removeItemFromCart();
-    console.log(`Item Removed!`);
+    // itemCtx.addItemToCart();
+    itemCtx.addItemToCart2(addedItem);
   };
   return (
     <Card className={styles.menuItem}>
@@ -28,9 +26,19 @@ const MenuItem = (props) => {
         <div>{props.menuItem.price}</div>
       </div>
       <div>
-        <Button onClick={addItemToCart} buttonText="+" />
-        <span> {numberOfItem} </span>
-        <Button onClick={removeItemFromCard} buttonText="-" />
+        <strong>Amount</strong>{" "}
+        <span
+          style={{
+            border: "1px solid black",
+            paddingLeft: "4px",
+            paddingRight: "4px",
+          }}
+        >
+          {numberOfItem}
+        </span>
+        <div className={styles.buttonContainer}>
+          <Button onClick={addItemToCart} buttonText="Add Item" />
+        </div>
       </div>
     </Card>
   );

@@ -1,0 +1,24 @@
+.menuItem {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid goldenrod;
+  width: 80%;
+  margin: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+}
+.price {
+  color: goldenrod;
+  font-weight: bold;
+}
+.quantity {
+  margin-left: 1rem;
+  border: 1px solid black;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  font-weight: bold;
+}
+.rightSide{
+    justify-content: space-evenly;
+}
