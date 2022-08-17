@@ -4,29 +4,18 @@ import { actionTypes } from "../constants/itemContextConstants";
 
 const itemReducer = (state, action) => {
   if (action.type === actionTypes.addItem) {
-    let newItemsArray = state.items;
-    newItemsArray[action.item.id].quantity += 1;
+    let newItemArray = state.items;
+    newItemArray[action.item.id].quantity += 1;
     return {
       totalPrice: state.totalPrice + action.item.price,
-      // items: newItemsArray,
-      items: [
-        ...state.items,
-        {
-          ...state.items[action.item.id],
-          quantity: state.items[action.item.id] + 1,
-        },
-      ],
+      items: newItemArray,
     };
   } else if (action.type === actionTypes.removeItem) {
+    let newItemArray = state.items;
+    newItemArray[action.item.id].quantity--;
     return {
       totalPrice: state.totalPrice - state.items[action.item.id].price,
-      items: [
-        ...state.items,
-        {
-          ...state.items[action.item.id],
-          quantity: state.items[action.item.id] - 1,
-        },
-      ],
+      items: newItemArray,
     };
   } else {
     return { totalItems: 0, items: [] };
