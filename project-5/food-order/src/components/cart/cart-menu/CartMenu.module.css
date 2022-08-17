@@ -1,3 +1,9 @@
 .cartMenu {
-  margin-top: 20% !important;
+  /* margin-top: 20% !important; */
+  position: absolute;
+  top: 30vh;
+  left: 15%;
+  width: 70% !important;
+  z-index: 100;
+  overflow: hidden;
 }

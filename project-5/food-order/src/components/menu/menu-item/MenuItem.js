@@ -4,17 +4,14 @@ import Card from "./../../shared/card/Card";
 import Button from "../../shared/button/Button";
 import { ItemContext } from "../../../context/item-context";
 const MenuItem = (props) => {
-  const [numberOfItem, setNumberOfItem] = useState(0);
   const itemCtx = useContext(ItemContext);
+  const numberOfItem = itemCtx.items.items[props.menuItem.id].quantity;
   const addItemToCart = () => {
     const addedItem = {
       price: props.menuItem.price,
       id: props.menuItem.id,
     };
 
-    setNumberOfItem((prevState) => {
-      return prevState + 1;
-    });
     // itemCtx.addItemToCart();
     itemCtx.addItemToCart2(addedItem);
   };
