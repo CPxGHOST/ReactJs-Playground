@@ -7,7 +7,11 @@ function App() {
   console.log("App.js RUNNING");
   const [showParagraph, setShowParagraph] = useState(false);
   const toggleParagraph = useCallback(() => {
-    setShowParagraph((oldState) => !oldState);
+    setShowParagraph((oldState) => {
+      console.log("Inside state updating method");
+      return !oldState;
+    });
+    console.log("State change scheduled!");
   }, []);
 
   return (
