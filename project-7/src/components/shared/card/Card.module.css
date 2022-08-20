@@ -1,7 +1,7 @@
 .Card {
   margin: 1rem auto;
-  width: 90%;
-  max-width: 40rem;
+  width: 75%;
+  /* max-width: 40rem; */
   text-align: center;
   background-color: white;
   padding: 2rem;
