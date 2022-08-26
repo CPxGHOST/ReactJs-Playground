@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 const useApi = (requestConfig, takeData) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -6,13 +6,12 @@ const useApi = (requestConfig, takeData) => {
   const sendRequest = async () => {
     setIsLoading(true);
     setError(null);
+    console.log("Use api state changed");
     try {
       const response = await fetch(requestConfig.url, {
-        method: requestConfig.method,
-        body: JSON.stringify(requestConfig.body),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        method: requestConfig.method ? requestConfig.method : "GET",
+        body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
+        headers: requestConfig.headers ? requestConfig.headers : {},
       });
 
       if (!response.ok) {
@@ -27,12 +26,6 @@ const useApi = (requestConfig, takeData) => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    const networkCall = async () => {
-      await sendRequest();
-    };
-    networkCall();
-  }, []);
-  return [isLoading, error];
+  return { isLoading, error, sendRequest };
 };
 export default useApi;
