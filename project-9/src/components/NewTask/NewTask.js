@@ -14,10 +14,12 @@ const NewTask = (props) => {
     },
     body: { text: taskText },
   };
-  useEffect(() => {
-    if (taskText.length > 0) sendRequest();
-  }, [taskText]);
   const { isLoading, error, sendRequest } = useApi(requestConfig, UseData);
+
+  useEffect(() => {
+    console.log("NewTask useEffect triggered!");
+    if (taskText.length > 0) sendRequest(requestConfig, UseData);
+  }, [taskText]);
   const enterTaskHandler = async (enteredTaskText) => {
     setTaskText(enteredTaskText);
   };
