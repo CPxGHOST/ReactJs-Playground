@@ -1,9 +1,9 @@
-import { useState } from "react";
-const useApi = (requestConfig, takeData) => {
+import { useCallback, useState } from "react";
+const useApi = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const sendRequest = async () => {
+  const sendRequest = useCallback(async (requestConfig, takeData) => {
     setIsLoading(true);
     setError(null);
     console.log("Use api state changed");
@@ -24,7 +24,7 @@ const useApi = (requestConfig, takeData) => {
       setError(err.message || "Something went wrong!");
     }
     setIsLoading(false);
-  };
+  }, []);
 
   return { isLoading, error, sendRequest };
 };
